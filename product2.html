@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <iframe src="https://giphy.com/embed/fxTDiduVAhCgnNLaG2" width="300" height="300" frameBorder="0"
+        class="giphy-embed" allowFullScreen></iframe>
+    <h2>Sản phẩm</h2>
+    <label for="">ID</label>
+    <input type="text" id="idProduct" />
+    <!-- <br />
+    <label for="">Name</label>
+    <input type="text" id="nameProduct" />
+    <br />
+    <label for="">Price</label>
+    <input type="text" id="priceProduct" />
+    <br /> -->
+    <button onclick="addProduct()">Add</button>
+    <h3>Sản phẩm đã thêm:</h3>
+    <table id="tableProduct"></table>
+    <script>
+    
+      let listProduct = [];
+      function addProduct() {
+        let _idProduct = document.getElementById("idProduct").value;
+        // let _nameProduct = document.getElementById("nameProduct").value;
+        // let _priceProduct = document.getElementById("priceProduct").value;
+        // console.log(_idProduct);
+        // console.log(_nameProduct);
+        // console.log(_priceProduct);
+        listProduct.push(_idProduct);
+        // listProduct.push(_nameProduct);
+        // listProduct.push(_priceProduct);
+        console.log(listProduct);
+        renderProduct();
+      }
+      function renderProduct() {
+        let result = "";
+        for (let i = 0; i < listProduct.length; i++) {
+          result += `
+            <tr>
+                 <td>
+                    ${listProduct[i]}
+                 </td>
+                 <td><button onclick="editProduct${i}">Edit</button></td>
+                 <td><button onclick="deleteProduct(${i})">Delete</button></td>
+            </tr>
+            `;
+        }
+        document.getElementById("tableProduct").innerHTML = result;
+      }
+      function deleteProduct(index) {
+        listProduct.splice(index, 1);
+        renderProduct();
+      }
+      function editProduct(index){
+        let valueEdit = prompt(`Nhap id ban muon doi}`);
+        listProduct.splice(index,1,valueEdit);
+        renderProduct();
+      }
+    </script>
+  </body>
+</html>
